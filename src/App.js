@@ -14,29 +14,33 @@ function App() {
     setResult((result) => result + Number(inputRef.current.value)); 
   }; 
  
-  function minus(e) {
+  function minus(e) { 
     e.preventDefault(); 
     setResult((result) => result - Number(inputRef.current.value)); 
   };
  
-  function times(e) {
+  function times(e) { 
     e.preventDefault(); 
-    setResult((result) => result * Number(inputRef.current.value)); 
+    setResult((result) => result * Number(inputRef.current.value));
   }; 
  
-  function divide(e) {
-    e.preventDefault();
-    var num = Number(inputRef.current.value);
-    if (num != 0) {
-      setResult((result) => result / num);
+  function divide(e) { 
+    e.preventDefault(); 
+    const value = Number(inputRef.current.value);
+    if (value === 0) {
+      alert("Cannot divide by zero");
+    } else {
+      setResult((result) => result / value);
     }
   };
  
   function resetInput(e) { 
-    inputRef.current = null;
+    e.preventDefault();
+    inputRef.current.value = "";
   }; 
  
   function resetResult(e) { 
+    e.preventDefault(); 
     setResult(0);
   }; 
  
@@ -46,11 +50,8 @@ function App() {
         <h1>Simplest Working Calculator</h1> 
       </div> 
       <form> 
-        <p ref={resultRef}> 
-          {result} 
-        </p> 
+        <p ref={resultRef}>Result: {result}</p> 
         <input
-          pattern="[0-9]" 
           ref={inputRef} 
           type="number" 
           placeholder="Type a number" 
@@ -59,7 +60,6 @@ function App() {
         <button onClick={minus}>subtract</button>
         <button onClick={times}>multiply</button>
         <button onClick={divide}>divide</button>
-        <br/>
         <button onClick={resetInput}>resetInput</button>
         <button onClick={resetResult}>resetResult</button>
       </form> 
@@ -67,4 +67,4 @@ function App() {
   ); 
 } 
  
-export default App; 
+export default App;
