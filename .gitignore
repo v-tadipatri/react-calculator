@@ -1,6 +1,8 @@
 # Custom
 package-lock.json
 .idea
+staging
+*.zip
 
 # Logs
 logs
