@@ -1,23 +1,34 @@
-* {
-    font-family: sans-serif;
-  }
-  input,
-  button {
-    font-size: 20px;
-    padding: 10px;
-    border-radius: 5px;
-  }
-  input {
-    display: block;
-    margin-bottom: 20px;
-  }
-  button {
-    border: 1px solid gray;
-    background: whitesmoke;
-    margin-right: 5px;
-  }
-  button:nth-last-child(2),
-  button:nth-last-child(1) {
-    background: tomato;
-    color: white;
-  }
+.calculator {
+  font-family: Arial, sans-serif;
+  margin: 40px;
+}
+
+h1 {
+  font-weight: bold;
+}
+
+input {
+  padding: 10px;
+  font-size: 16px;
+  width: 250px;
+  margin-bottom: 15px;
+  display: block;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.reset {
+  background-color: #ff6347;
+  color: white;
+  border: none;
+}

@@ -1,72 +1,64 @@
-import {
-  useState,
-  useRef
-} from "react"; 
-import "./App.css";
+import React, { useState } from 'react';
+import './App.css';
 
-function App() { 
-  const inputRef = useRef(null); 
-  const resultRef = useRef(null); 
-  const [result, setResult] = useState(0); 
- 
-  function plus(e) { 
-    e.preventDefault(); 
-    setResult((result) => result + Number(inputRef.current.value)); 
-  }; 
- 
-  function minus(e) {
-    e.preventDefault(); 
-    setResult((result) => result - Number(inputRef.current.value)); 
+function App() {
+  const [input, setInput] = useState('');
+  const [result, setResult] = useState(0);
+
+  const handleInputChange = (e) => {
+    setInput(e.target.value);
   };
- 
-  function times(e) {
-    e.preventDefault(); 
-    setResult((result) => result * Number(inputRef.current.value)); 
-  }; 
- 
-  function divide(e) {
-    e.preventDefault();
-    var num = Number(inputRef.current.value);
-    if (num != 0) {
-      setResult((result) => result / num);
+
+  const performOperation = (operator) => {
+    const value = parseFloat(input);
+    if (isNaN(value)) return;
+
+    switch (operator) {
+      case 'add':
+        setResult(result + value);
+        break;
+      case 'subtract':
+        setResult(result - value);
+        break;
+      case 'multiply':
+        setResult(result * value);
+        break;
+      case 'divide':
+        if (value !== 0) {
+          setResult(result / value);
+        } else {
+          alert('Cannot divide by zero!');
+        }
+        break;
+      default:
+        break;
     }
   };
- 
-  function resetInput(e) { 
-    e.preventDefault();
-    inputRef.current.value = null;
-  }; 
- 
-  function resetResult(e) { 
-    e.preventDefault();
-    setResult(0);
-  }; 
- 
-  return ( 
-    <div className="App"> 
-      <div> 
-        <h1>Simplest Working Calculator</h1> 
-      </div> 
-      <form> 
-        <p ref={resultRef}> 
-          {result} 
-        </p> 
-        <input
-          pattern="[0-9]" 
-          ref={inputRef} 
-          type="number" 
-          placeholder="Type a number" 
-        /> 
-        <button onClick={plus}>add</button>
-        <button onClick={minus}>subtract</button>
-        <button onClick={times}>multiply</button>
-        <button onClick={divide}>divide</button>
-        <br/>
-        <button onClick={resetInput}>resetInput</button>
-        <button onClick={resetResult}>resetResult</button>
-      </form> 
-    </div> 
-  ); 
-} 
- 
-export default App; 
+
+  const resetInput = () => setInput('');
+  const resetResult = () => setResult(0);
+
+  return (
+    <div className="calculator">
+      <h1>Simplest Working Calculator</h1>
+      <h2>{result}</h2>
+      <input
+        type="number"
+        value={input}
+        onChange={handleInputChange}
+        placeholder="Enter number"
+      />
+      <div className="buttons">
+        <button onClick={() => performOperation('add')}>add</button>
+        <button onClick={() => performOperation('subtract')}>subtract</button>
+        <button onClick={() => performOperation('multiply')}>multiply</button>
+        <button onClick={() => performOperation('divide')}>divide</button>
+        <button className="reset" onClick={resetInput}>reset input</button>
+        <button className="reset" onClick={resetResult}>reset result</button>
+      </div>
+    </div>
+  );
+}
+
+export default App;
+
