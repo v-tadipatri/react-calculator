@@ -33,10 +33,12 @@ function App() {
   };
  
   function resetInput(e) { 
-    inputRef.current = null;
+    e.preventDefault();
+    inputRef.current.value = null;
   }; 
  
   function resetResult(e) { 
+    e.preventDefault();
     setResult(0);
   }; 
  
