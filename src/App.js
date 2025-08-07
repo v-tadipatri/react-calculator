@@ -14,29 +14,28 @@ function App() {
     setResult((result) => result + Number(inputRef.current.value)); 
   }; 
  
-  function minus(e) {
+  function minus(e) { 
     e.preventDefault(); 
     setResult((result) => result - Number(inputRef.current.value)); 
   };
  
-  function times(e) {
+  function times(e) { 
     e.preventDefault(); 
     setResult((result) => result * Number(inputRef.current.value)); 
   }; 
  
-  function divide(e) {
-    e.preventDefault();
-    var num = Number(inputRef.current.value);
-    if (num != 0) {
-      setResult((result) => result / num);
-    }
+  function divide(e) { 
+    e.preventDefault(); 
+    setResult((result) => result / Number(inputRef.current.value));
   };
  
   function resetInput(e) { 
-    inputRef.current = null;
+    e.preventDefault(); 
+    inputRef.current.value = null;
   }; 
  
   function resetResult(e) { 
+  	e.preventDefault(); 
     setResult(0);
   }; 
  
@@ -47,7 +46,7 @@ function App() {
       </div> 
       <form> 
         <p ref={resultRef}> 
-          {result} 
+          {result}
         </p> 
         <input
           pattern="[0-9]" 
@@ -55,13 +54,12 @@ function App() {
           type="number" 
           placeholder="Type a number" 
         /> 
-        <button onClick={plus}>add</button>
+        <button onClick={plus}>add</button> 
         <button onClick={minus}>subtract</button>
         <button onClick={times}>multiply</button>
         <button onClick={divide}>divide</button>
-        <br/>
-        <button onClick={resetInput}>resetInput</button>
-        <button onClick={resetResult}>resetResult</button>
+        <button onClick={resetInput}>reset input</button> 
+        <button onClick={resetResult}>reset result</button>
       </form> 
     </div> 
   ); 
